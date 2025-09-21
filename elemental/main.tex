@@ -1,0 +1,13 @@
+\section{ナビゲーション}
+ROS Navigation stackは, 自律移動ロボットが環境内を自律的に移動するためのソフトウェアフレームワークである. 主に以下の要素から構成されている. 
+\begin{itemize}
+     \item \textbf{自己位置推定}\\
+     ロボットは地図上で自己位置を推定する必要がある. その代表的な手法として, AMCL(Adaptive Monte Carlo Localization)が用いられる. 
+     AMCLはLiDARやオドメトリ情報を統合し, パーティクルフィルタに基づいて自己位置を推定する. 
+     \item \textbf{地図生成}\\
+     未知領域においては, 環境のマッピングのため, SLAM(Simultaneous Localization and Mapping)が必要となる. 
+     \item \textbf{経路計画}\\
+     ロボットは現在位置から目標地点までの経路を計算する. 大域的経路計画ではDijkstra法やA*アルゴリズムをもちいて地図上の最適経路を算出し, 局所的経路計画ではDynamic Window Approachなどを用いて障害物を回避しながら経路追従を行う. 
+     \item \textbf{コストマップ}\\
+     経路計画の基盤となるのがコストマップである. コストマップは, 環境内の障害物や走行困難な領域を数値的に表現したものであり, センサ情報をもとに継続的に更新される. 
+\end{itemize}
