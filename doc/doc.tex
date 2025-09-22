@@ -41,5 +41,32 @@
 調整対象のパラメータは, 車輪半径に関する補正係数であるwheel\_radius\_multiplierと, 車輪環距離に関する補正係数であるwheel\_separation\_multiplierの2つである. 
 これらはロボットのオドメトリの正確さに直結するため, 自己位置推定を行う上で最初に調整すべき項目である. 
 
+調整手順は以下の通りである. まず, Rvizを用いてトピックの可視化の準備を行う. 固定座標系をodomに設定し, LaserScanトピックを表示することで, ロボットの移動に伴うセンサ計測をできるようにする. 
+
+次に, ロボットを壁から数メートル離れた位置に配置し, 直進させて並進成分の正確さを確認する. 
+このとき, 得られるレーザスキャンに厚みが生じる場合は, wheel\_radius\_multiplierを調整する. 
+
+さらに, ロボットをその場で回転させ, 回転成分の正確さを確認する. 
+スキャンが1〜2度以上ずれている場合は, wheel\_separation\_multiplierを調整する. 
+最後に再度直進させ, 並進と回転の双方でスキャンが一致していることを確認した時点で調整を完了とする. 
+
+\figref{fig:Scanvisualizedinrviz}にオドメトリ調整前後のレーザスキャンをRvizで可視化した様子を示す. 
+\begin{figure}[h]
+     \centering
+     \begin{minipage}[c]{65mm}
+         \centering
+         \includegraphics[height=40mm]{images/before_odom.png}
+         \subcaption{Scan before odometry adjustment}
+     \end{minipage}
+     \begin{minipage}[c]{65mm}
+         \centering
+         \includegraphics[height=40mm]{images/after_odom.png}
+         \subcaption{Scan after odometry adjustment}
+     \end{minipage}
+     \caption{Scan visualized in Rviz}
+     \label{fig:Scanvisualizedinrviz}
+\end{figure}
+
+\subsection{AMCLにおけるオドメトリ関連パラメータの調整}
 
 
