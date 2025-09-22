@@ -1,5 +1,7 @@
 \section{ドキュメントの構成}
 作成したドキュメントの構成は以下の要素から構成されている. 
+また, 作成にあたってROS WikiのNavigationページを参考にした.
+\cite{ros_wiki_navigation}
 \begin{itemize}
      \item \textbf{自己位置推定(AMCL)}
      \begin{itemize}
@@ -30,3 +32,14 @@
         \item \textbf{オドメトリの調整手順}
     \end{itemize}     
 \end{itemize}
+
+\section{ドキュメントの例示}
+本論文では, 作成したドキュメントの中から例示として, オドメトリ調整と自己位置推定(AMCL)の
+2項目を取り上げ, 記載内容の一部を示す. 
+
+\subsection{オドメトリ調整}
+調整対象のパラメータは, 車輪半径に関する補正係数であるwheel\_radius\_multiplierと, 車輪環距離に関する補正係数であるwheel\_separation\_multiplierの2つである. 
+これらはロボットのオドメトリの正確さに直結するため, 自己位置推定を行う上で最初に調整すべき項目である. 
+
+
+
