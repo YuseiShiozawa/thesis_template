@@ -2,7 +2,7 @@
 
 \section{背景}
 近年, ROS(Robot Operating System)をベースとした自律移動ロボットのナビゲーション技術が, 警備ロボットや案内ロボットなど, 様々な分野で活用されつつある. 
-ただし, ナビゲーションにおいては, ROS Navigation stackのパラメータ, オドメトリ調整のパラメータ, 地図生成のパラメータなど, 複数のパラメータを
+ただし, ナビゲーションにおいては, ROS Navigation stack\cite{navstack}のパラメータ, オドメトリ調整のパラメータ, 地図生成のパラメータなど, 複数のパラメータを
 適切に調整しなければ自律移動を行うことができない. 
 
 また, 現状ではこれらのパラメータ調整に関する明確な指針は十分に示されていない. 
@@ -11,7 +11,7 @@
 そのため, 屋外環境かつ実ロボットにも対応したナビゲーションにおけるパラメータ調整手順の明確化が求められる. 
 \newpage
 \section{関連研究}
-ROSのナビゲーションのパラメータ調整について解説されている関連研究として, Kaiyu ZhengによるROS Navigation Tuning Guideが挙げられる. 
+ROSのナビゲーションのパラメータ調整について解説されている関連研究として, Kaiyu Zheng\cite{zheng2017rosnavigation}によるROS Navigation Tuning Guideが挙げられる. 
 このガイドは, ROS Navigation stackの性能を最大化するためのパラメータ調整プロセスを解説するものであり, AMCLやMove Baseなど, ナビゲーションにおける主要な項目を網羅している. 
 
 しかし, \figref{Fig:laser-related parameters}, \figref{Fig:odometry and particle filter parameters}のように具体的なパラメータ値が提示され, それらが望ましい設定値であると示している. 
