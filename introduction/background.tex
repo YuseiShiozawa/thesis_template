@@ -1,17 +1,18 @@
 %!TEX root = ../thesis.tex
 
 \section{背景}
-近年, ROS(Robot Operating System)をベースとした自律移動ロボットのナビゲーション技術が, 警備ロボットや案内ロボットなど, 様々な分野で活用されつつある. 
+近年, ROS(Robot Operating System)をベースとした自律移動ロボットのナビゲーション技術が, 警備ロボットや案内ロボットなど, 様々な分野で活用されつつある.\cite{haikei_1} 
 ただし, ナビゲーションにおいては, ROS Navigation stack\cite{navstack}のパラメータ, オドメトリ調整のパラメータ, 地図生成のパラメータなど, 複数のパラメータを
 適切に調整しなければ自律移動を行うことができない. 
 
 また, 現状ではこれらのパラメータ調整に関する明確な指針は十分に示されていない. 
-特に, インターネット上で公開されている情報の多くは屋内環境を対象したものであり, 
+特に, 後述するインターネット上で公開されている情報の多くは屋内環境を対象したものであり, 
 センサ誤差や環境変動が大きく調整が困難な屋外環境に関連する情報は少ないという課題がある. 
-そのため, 屋外環境にも対応したナビゲーションにおけるパラメータ調整手順の明確化が求められる. 
+そのため, 屋外環境を対象としたナビゲーションにおけるパラメータ調整手順の明確化が求められる. 
 \newpage
-\section{関連研究}
-ROSのナビゲーションのパラメータ調整について解説されている関連研究として, Kaiyu Zheng\cite{zheng2017rosnavigation}によるROS Navigation Tuning Guideが挙げられる. 
+\section{ナビゲーションに関する関連資料}
+\subsection{ROS Navigation Tuning Guide}
+ROSのナビゲーションのパラメータ調整について解説されている資料として, Kaiyu ZhengによるROS Navigation Tuning Guide\cite{zheng2017rosnavigation}が挙げられる. 
 このガイドは, ROS Navigation stackの性能を最大化するためのパラメータ調整プロセスを解説するものであり, AMCLやMove Baseなど, ナビゲーションにおける主要な項目を網羅している. 
 
 しかし, \figref{Fig:laser-related parameters}, \figref{Fig:odometry and particle filter parameters}のように具体的なパラメータ値が提示され, それらが望ましい設定値であると示している. 
@@ -21,7 +22,7 @@ ROSのナビゲーションのパラメータ調整について解説されて�
   \centering
  \includegraphics[keepaspectratio, scale=0.3]
       {images/senkou_1.png}
- \caption{laser-related parameters}
+ \caption{Laser-related parameters}
  \label{Fig:laser-related parameters}
 \end{figure}
 
@@ -29,10 +30,41 @@ ROSのナビゲーションのパラメータ調整について解説されて�
   \centering
  \includegraphics[keepaspectratio, scale=0.3]
       {images/senkou_2.png}
- \caption{odometry and particle filter parameters}
+ \caption{Odometry and particle filter parameters}
  \label{Fig:odometry and particle filter parameters}
 \end{figure}
-%\subsubsection{etc...}
+
+
+\subsection{A guide to implement ROS Navigation Stack on any robot}
+ROSのナビゲーションのパラメータ調整について解説されている資料として, A guide to implement ROS Navigation Stack on any robot\cite{siryo_3}が挙げられる. 
+このガイドでは, ROS Navigation Stackの主要な構成要素や一部のパラメータ例が紹介されており, シミュレータ上でのナビゲーション実装手順についても解説されている. 
+
+しかし, \figref{Fig:param_example_1}, \figref{Fig:param_example_2}, \figref{Fig:param_example_3}のように具体的な調整方法については明確に示されていない. 
+読み手はパラメータの設定値の一例は得られるものの，実際にナビゲーションシステムを向上させるための具体的な調整手順を導き出すことは難しいという課題がある．
+\begin{figure}[hbtp]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.17]
+      {images/param_example_1.png}
+ \caption{Parameters for TrajectoryPlannerROS}
+ \label{Fig:param_example_1}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.17]
+      {images/param_example_2.png}
+ \caption{Parameters for global costmap}
+ \label{Fig:param_example_2}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.17]
+      {images/param_example_3.png}
+ \caption{Parameter for local costmap}
+ \label{Fig:param_example_3}
+\end{figure}
+
 \newpage
 \section{目的}
 本論文では, ロボットにおけるナビゲーションの調整手順を体系化し, 調整方法の一例を示すことを目的とする. 
