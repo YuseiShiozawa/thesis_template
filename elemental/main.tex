@@ -15,11 +15,29 @@ ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を�
      AMCLはROS Navigation Stackで自己位置推定を行う確率的アルゴリズムであり, LiDARやオドメトリ情報をもとに多数の仮説(パーティクル)を生成し, 
      それぞれの重みを更新することでロボットの位置を推定する. また, 状況に応じてパーティクル数を動的に調整することで精度と計算負荷のバランスを取る特徴をもつ. 
      一方で, その性能はオドメトリ誤差やレーザノイズなど多くのパラメータ設定に依存しており, 実環境に応じたチューニングが重要となる. 
+     \figref{Fig:lamcl_example}に自己位置推定の様子を示す. 
+     \begin{figure}[hbtp]
+     \centering
+          \includegraphics[keepaspectratio, scale=0.2]
+           {images/amcl_example.png}
+          \caption{Localization in Rviz}
+          \label{Fig:lamcl_example}
+     \end{figure}
+
      \item \textbf{地図生成}\\
      未知領域においては, 環境のマッピングのため, SLAM(Simultaneous Localization and Mapping)が必要となる. 
      SLAMは, ロボットが未知の環境内で自己位置を推定しながら同時に地図を生成するための手法であり, 
      自律移動の基盤技術の一つである. ロボットはLiDARやカメラなどのセンサ情報を取得し, 環境内の特徴点や障害物を検出することで地図を構築すると同時に, 
      自身の位置をその地図上で推定する. この相互依存的な推定を繰り返すことで, 外部基準を持たない環境でも自己位置と地図を同時に確立できる. 
+     \figref{Fig:Map}にSLAMで作成された地図を示す. 
+     \begin{figure}[hbtp]
+     \centering
+          \includegraphics[keepaspectratio, scale=0.25]
+           {images/slam_toolbox.png}
+          \caption{Map created with SLAM}
+          \label{Fig:Map}
+     \end{figure}
+
      \item \textbf{経路計画}\\
      経路計画は, ロボットが目的地へ到達するための経路を生成, 追従するプロセスであり, ナビゲーションシステムの中心的な役割を担う. 
      大域的経路計画は, 静的な地図情報をもとに, ロボットの現在位置から目的地までの全体的な経路を計算する段階である. 
@@ -41,4 +59,12 @@ ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を�
      障害物が存在するセルの値が高く, 通行可能な領域は低い値で表現される. 
      この数値は経路計画アルゴリズムによって考慮され, ロボットはより安全でコストの低い経路を優先して移動する. 
      これにより, 経路計画は単に障害物を避けるだけでなく, 走行中の安全性を確保しつつ目標地点まで到達できるようになる. 
+     \figref{Fig:costmap}にコストマップの一例を示す. 
+     \begin{figure}[hbtp]
+     \centering
+          \includegraphics[keepaspectratio, scale=0.2]
+           {images/costmap.png}
+          \caption{Costmap in Rviz}
+          \label{Fig:costmap}
+     \end{figure}     
 \end{itemize}
