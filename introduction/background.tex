@@ -10,7 +10,8 @@
 センサ誤差や環境変動が大きく調整が困難な屋外環境に関する情報は少ない. 
 そのため, 屋外環境を対象としたナビゲーションにおけるパラメータ調整手順の明確化を行えば, 今後ROS Navigation stackを使用して屋外自律移動を行う方々に対して有益な情報となると考える.  
 \newpage
-\section{ROS Navigation stackのパラメータの調整方法に関する公開情報}
+\section[ROS Navigation Stackのパラメータの調整方法に関する公開情報]%
+{ROS Navigation Stackのパラメータの調整方法に関する\\[0pt]\hspace{2.25em}公開情報}
 \subsection{ROS Navigation Tuning Guide}
 ROSのナビゲーションのパラメータ調整について解説されている資料として, Kaiyu ZhengによるROS Navigation Tuning Guide\cite{zheng2017rosnavigation}が挙げられる. 
 このガイドは, ROS Navigation stackの性能を最大化するためのパラメータ調整プロセスを解説するものであり, AMCLやMove Baseなど, ナビゲーションにおける主要な項目を網羅している. 
@@ -43,31 +44,31 @@ ROSのナビゲーションのパラメータ調整について解説されて�
 読み手はパラメータの設定値の一例は得られるものの，実際にナビゲーションシステムを向上させるための具体的な調整手順を導き出すことは難しいという課題がある．
 \begin{figure}[hbtp]
   \centering
- \includegraphics[keepaspectratio, scale=0.17]
+ \includegraphics[keepaspectratio, scale=0.24]
       {images/param_example_1.png}
- \caption{Parameters for TrajectoryPlannerROS}
+ \caption{Parameters for TrajectoryPlannerROS(souce: \cite{siryo_3})}
  \label{Fig:param_example_1}
 \end{figure}
 
 \begin{figure}[hbtp]
   \centering
- \includegraphics[keepaspectratio, scale=0.17]
+ \includegraphics[keepaspectratio, scale=0.24]
       {images/param_example_2.png}
- \caption{Parameters for global costmap}
+ \caption{Parameters for global costmap(souce: \cite{siryo_3})}
  \label{Fig:param_example_2}
 \end{figure}
 
 \begin{figure}[hbtp]
   \centering
- \includegraphics[keepaspectratio, scale=0.17]
+ \includegraphics[keepaspectratio, scale=0.24]
       {images/param_example_3.png}
- \caption{Parameter for local costmap}
+ \caption{Parameter for local costmap(souce: \cite{siryo_3})}
  \label{Fig:param_example_3}
 \end{figure}
 
 \newpage
 \section{目的}
-本論文では, ロボットにおけるナビゲーションの調整手順を体系化し, 調整方法の一例を示すことを目的とする. 
+本論文では, ロボットにおけるROS Navigation stackを用いたナビゲーションの調整手順を体系化し, 調整方法の一例を示すことを目的とする. 
 
 \section{論文の構成}
 本論文では以下のように構成される. 
@@ -76,9 +77,9 @@ ROSのナビゲーションのパラメータ調整について解説されて�
 
 3章では本研究で作成したドキュメントについて述べる. 
 
-4章では津田沼チャレンジによる実験でドキュメントの有効性を検証する. 
+4章では津田沼チャレンジによる実験でドキュメントの有用性を検証する. 
 
-5章ではつくばチャレンジによる実験でドキュメントの有効性を検証する. 
+5章ではつくばチャレンジによる実験でドキュメントの有用性を検証する. 
 
 6章では本論文について結論を述べる. 
 

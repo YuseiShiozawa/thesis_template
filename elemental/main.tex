@@ -24,7 +24,7 @@ ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を�
      \figref{Fig:lamcl_example}に自己位置推定の様子を示す. 
      \begin{figure}[hbtp]
      \centering
-          \includegraphics[keepaspectratio, scale=0.2]
+          \includegraphics[keepaspectratio, scale=0.12]
            {images/amcl_example.png}
           \caption{Localization in Rviz}
           \label{Fig:lamcl_example}
@@ -35,14 +35,25 @@ ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を�
      SLAMは, ロボットが未知の環境内で自己位置を推定しながら同時に地図を生成するための手法であり, 
      自律移動の基盤技術の一つである. ロボットはLiDARやカメラなどのセンサ情報を取得し, 環境内の特徴点や障害物を検出することで地図を構築すると同時に, 
      自身の位置をその地図上で推定する. この相互依存的な推定を繰り返すことで, 外部基準を持たない環境でも自己位置と地図を同時に確立できる. 
-     \figref{Fig:Map}にSLAMで作成された地図を示す. 
-     \begin{figure}[hbtp]
-     \centering
-          \includegraphics[keepaspectratio, scale=0.2]
-           {images/slam_toolbox.png}
-          \caption{Map created with SLAM}
-          \label{Fig:Map}
-     \end{figure}
+     \figref{fig:map_comparison}にSLAMで作成された地図とそれに対応する実環境の航空写真を示す. 
+\begin{figure}[hbtp]
+  \centering
+  \begin{subfigure}[b]{0.44\textwidth}
+    \centering
+    \includegraphics[keepaspectratio, width=\linewidth]{images/slam_toolbox.png}
+    \caption{Map created with SLAM}
+    \label{Fig:Map}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[keepaspectratio, width=\linewidth]{images/real_tsudanuma.png}
+    \caption{Aerial photograph(souce: \cite{googleearth})}
+    \label{fig:tsudanuma}
+  \end{subfigure}
+  \caption{Created map and aerial photograph}
+  \label{fig:map_comparison}
+\end{figure}
 
      \item \textbf{経路計画}\\
      経路計画は, ロボットが目的地へ到達するための経路を生成, 追従するプロセスであり, ナビゲーションシステムの中心的な役割を担う. 
