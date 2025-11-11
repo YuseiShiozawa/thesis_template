@@ -3,14 +3,14 @@
 \section{背景}
 近年, ROS(Robot Operating System)をベースとした自律移動ロボットのナビゲーション技術が, 警備ロボットや案内ロボットなど, 様々な分野で活用されつつある.\cite{haikei_1}\cite{siryo_4}
 ただし, ナビゲーションにおいては, ROS Navigation stack\cite{navstack}のパラメータ, オドメトリ調整のパラメータ, 地図生成のパラメータなど, 複数のパラメータを
-適切に調整しなければ自律移動を行うことができない. 
+適切に調整しなければ経路に沿った自律移動を行うことができない. 
 
 また, 現状ではこれらのパラメータ調整に関する明確な指針は十分に示されていない. 
 特に, 後述するインターネット上で公開されている情報の多くは屋内環境を対象したものであり, 
-センサ誤差や環境変動が大きく調整が困難な屋外環境に関する情報は少ないという課題がある. 
-そのため, 屋外環境を対象としたナビゲーションにおけるパラメータ調整手順の明確化が求められる. 
+センサ誤差や環境変動が大きく調整が困難な屋外環境に関する情報は少ない. 
+そのため, 屋外環境を対象としたナビゲーションにおけるパラメータ調整手順の明確化を行えば, 今後ROS Navigation stackを使用して屋外自律移動を行う方々に対して有益な情報となると考える.  
 \newpage
-\section{ナビゲーションに関する関連資料}
+\section{ROS Navigation stackのパラメータの調整方法に関する公開情報}
 \subsection{ROS Navigation Tuning Guide}
 ROSのナビゲーションのパラメータ調整について解説されている資料として, Kaiyu ZhengによるROS Navigation Tuning Guide\cite{zheng2017rosnavigation}が挙げられる. 
 このガイドは, ROS Navigation stackの性能を最大化するためのパラメータ調整プロセスを解説するものであり, AMCLやMove Baseなど, ナビゲーションにおける主要な項目を網羅している. 
@@ -22,7 +22,7 @@ ROSのナビゲーションのパラメータ調整について解説されて�
   \centering
  \includegraphics[keepaspectratio, scale=0.3]
       {images/senkou_1.png}
- \caption{Laser-related parameters}
+ \caption{Laser-related parameters(souce: \cite{zheng2017rosnavigation})}
  \label{Fig:laser-related parameters}
 \end{figure}
 
@@ -30,7 +30,7 @@ ROSのナビゲーションのパラメータ調整について解説されて�
   \centering
  \includegraphics[keepaspectratio, scale=0.3]
       {images/senkou_2.png}
- \caption{Odometry and particle filter parameters}
+ \caption{Odometry and particle filter parameters(souce: \cite{zheng2017rosnavigation})}
  \label{Fig:odometry and particle filter parameters}
 \end{figure}
 
