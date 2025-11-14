@@ -71,6 +71,7 @@ ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を�
      この際, ロボットの形状を定義するfootprintは経路生成に大きく影響するパラメータである. 
      footprintの設定が小さすぎると, 実際には通過不可能な狭い領域を経路として計算してしまう一方, 
      過度に大きく設定すると通行可能な経路を避けてしまうため, 実ロボットの外形に基づいた適切な設定が必要となる. 
+     \figref{Fig:foot}にfootprintの一例を示す. 
      一方, 局所的経路計画は, ロボットが実際に移動する際の動作をリアルタイムに制御する段階であり, 
      センサ情報をもとに動的な障害物を回避しながら経路を追従する. 
      代表的な手法であるDWA(Dynamic Window Approach)は, ロボットの運動学的制約を考慮しつつ, 
@@ -79,8 +80,34 @@ ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を�
      滑らかな走行と衝突回避を両立させている. 
      この最適な行動を選択するシミュレーション時間を決定するのがsim\_timeパラメータであり, 
      値を大きくすると遠い将来までの経路を考慮するが, 計算負荷が増加する. 
+     \figref{fig:simcompare}に異なるsim\_timeにおける経路を示す. 
      また, 経路計画の更新頻度を制御するパラメータとして, planner\_frequency(グローバルプランナーの再計算周期)およびcontroller\_frequency(ローカルプランナーの制御出力周期)がある. 
      これらの値はPCの処理能力や環境に応じて適切に調整する必要がある. 
+     \begin{figure}[hbtp]
+     \centering
+          \includegraphics[keepaspectratio, scale=0.13]
+           {images/foot.png}
+          \caption{footprint in Rviz}
+          \label{Fig:foot}
+     \end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.44\textwidth}
+    \centering
+    \includegraphics[keepaspectratio, width=\linewidth]{images/simtime17.png}
+    \caption{Local path at sim\_time=1.7s}
+    \label{Fig:sim17}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \centering
+    \includegraphics[keepaspectratio, width=\linewidth]{images/simtime34.png}
+    \caption{Local path at sim\_time=3.4s}
+    \label{fig:sim34}
+  \end{subfigure}
+  \caption{Comparison of local paths at different sim\_time}
+  \label{fig:simcompare}
+\end{figure}             
      \item \textbf{コストマップ}\\
      コストマップは, ロボットの経路計画において基盤となる情報構造であり, 環境内の障害物や走行困難な領域を数値化して表現することで, 
      経路計画アルゴリズムが安全かつ効率的に移動できるようにする. 

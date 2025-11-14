@@ -26,6 +26,7 @@
         \item \textbf{地図作成方法に関して}
         \item \textbf{slam\_toolboxでの地図作成方法}
         \item \textbf{glimでの地図作成方法}
+        \item \textbf{大規模屋外環境での地図解像度設定}
     \end{itemize}
     \item \textbf{オドメトリ}
     \begin{itemize}
@@ -34,8 +35,8 @@
 \end{itemize}
 
 \section{ドキュメントの例}
-本論文では, 作成したドキュメントの中から例として, オドメトリ調整と自己位置推定(AMCL)の
-2項目を取り上げ, 記載内容の一部を示す. 
+本論文では, 作成したドキュメントの中から例として, オドメトリ調整と自己位置推定(AMCL), 地図の
+3項目を取り上げ, 記載内容の一部を示す. 
 
 \subsection{オドメトリ調整}
 調整対象のパラメータは, 車輪半径に関する補正係数であるwheel\_radius\_multiplierと, 車輪環距離に関する補正係数であるwheel\_separation\_multiplierの2つである. 
@@ -105,3 +106,69 @@
      \caption{Map and scan visualized in Rviz}
      \label{fig:ScanandMap}
 \end{figure}
+
+\subsection{大規模屋外環境での地図解像度設定}
+つくばチャレンジ\cite{つくばチャレンジ}のような大規模な屋外環境における自律移動では, 
+使用する地図の総セル数が非常に大きくなる. このとき, 経路計画で用いられる Dijkstra 法の計算量は, 
+地図の総セル数に強く依存する. そのため, セル数が増大すると計算負荷が高まり, 
+ロボットが停止を繰り返すなどの問題が生じることがある. 実際に, 
+つくばチャレンジ2025の初回実験走行では, 計算領域が過大であったために, 
+ロボットが断続的に停止する様子が確認された. 
+
+ROSのmap\_serverが扱う地図は格子状のセルで構成されており, 1セルが表す物理距離は
+解像度(resolution)によって定義される. 解像度を大きく設定すると, 1セルあたりの距離が
+広がり, 結果として地図全体のセル数が減少する. 例えば, resolutionを0.10から0.20に変更した
+場合, 格子は荒くなるが, 総セル数は大きく減少し, 経路計画の計算速度は向上する. 
+\tabref{tab:resolution_comparison}に異なる解像度における特性の比較を示す. 
+\begin{table}[htbp]
+  \centering
+  \caption{Comparison of characteristics for diﬀerent map resolutions}
+  \label{tab:resolution_comparison}
+  \begin{tabular}{lcc}
+    \hline
+    & \textbf{Low resolution} & \textbf{High resolution} \\
+    \hline
+    Grid granularity & Fine & Coarse \\
+    Number of total cells & Large & Small \\
+    Computational cost & High & Low \\
+    \hline
+  \end{tabular}
+\end{table}
+
+つくばチャレンジ2025においては, 地図のスケールを調整した. 
+その結果を, \tabref{tab:tsukuba2025_map_scale}に示す. 総計算領域を約65\%削減することができた. 
+この削減により, Dijkstra 法による経路探索の計算量が大幅に低減し, ロボットが停止を繰り返す問題を解消することができた. 
+\figref{Fig:beforemap}, \figref{Fig:aftermap}にスケールを統一した調整前, 調整後の地図を示す. 
+
+ただし, 解像度を過度に大きくすると, 地図が粗くなり, 自己位置推定が不安定になったり, 
+狭い通路がセルの粗さによって潰され, 通行不可能と判断される場合がある. そのため, 
+解像度は単に大きくすればよいというものではないことを注意する必要がある. 
+\begin{table}[htbp]
+  \centering
+  \caption{Comparison of Map Scale Adjustment in Tsukuba Challenge 2025}
+  \label{tab:tsukuba2025_map_scale}
+  \begin{tabular}{lccc}
+    \hline
+     & Image size [pixel] & Total number of cells & resolution \\
+    \hline
+    Before adjustment & 7077 $\times$ 3773 & Approx.\ 26.69 million & 0.10 \\
+    After adjustment  & 4163 $\times$ 2219 & Approx.\ 9.24 million & 0.17 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{figure}[hbtp]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.05]
+      {images/tsukuba_all_2_edit_12_edit_14.png}
+ \caption{Map before adjustment}
+ \label{Fig:beforemap}
+\end{figure}
+\begin{figure}[hbtp]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.05]
+      {images/tsukuba_all_2_edit_12_edit_14_re_17.png}
+ \caption{Map after adjustment}
+ \label{Fig:aftermap}
+\end{figure}
+
