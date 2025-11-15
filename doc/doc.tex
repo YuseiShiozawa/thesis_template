@@ -35,8 +35,8 @@
 \end{itemize}
 
 \section{ドキュメントの例}
-本論文では, 作成したドキュメントの中から例として, オドメトリ調整と自己位置推定(AMCL), 地図の
-3項目を取り上げ, 記載内容の一部を示す. 
+本論文では, 作成したドキュメントの中から例として, オドメトリ調整と自己位置推定(AMCL), コストマップ, 地図の
+4項目を取り上げ, 記載内容の一部を示す. 
 
 \subsection{オドメトリ調整}
 調整対象のパラメータは, 車輪半径に関する補正係数であるwheel\_radius\_multiplierと, 車輪環距離に関する補正係数であるwheel\_separation\_multiplierの2つである. 
@@ -77,10 +77,31 @@
 調整方法は以下の通りである. まず, 走行データをrosbagで記録し, Rvizを用いてパーティクルの散らばりや自己位置のずれ方を可視化する. 
 これにより, どのパラメータが問題に寄与しているかを予測できる. その後, 記録したデータを再生し, パラメータを変更しながらオフラインでAMCLを動作させることで, パーティクルの挙動を確認できる. 
 
-調整の基準としては, スキャンデータと地図の対応関係を利用する. 例えば, スキャンが並進方向にずれる場合はodom\_alpha3を増加させることで改善できる. 
-また, 回転方向にずれる場合はodom\_alpha2を増加させることで修正を試みる. 
-自己位置が徐々にずれていく場合には, odom\_alpha1〜odom\_alpha4させることで安定化を図る. 
+調整の基準としては, スキャンデータと地図の対応関係を利用する. 例えば, \figref{Fig:tate}に示すように, スキャンが並進方向にずれる場合はodom\_alpha3を増加させることで改善できる. 
+また, \figref{Fig:kaiten}のように, 回転方向にずれる場合はodom\_alpha2を増加させることで修正を試みる. 
+\figref{Fig:hatan}に示すように, 自己位置が徐々にずれていく場合には, odom\_alpha1〜odom\_alpha4させることで安定化を図る. 
 特に, alpha2とalpha3の調整が有効である. 
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.13]
+      {images/tate.png}
+ \caption{Example of translational drift}
+ \label{Fig:tate}
+\end{figure}
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.15]
+      {images/kaiten.png}
+ \caption{Example of rotational drift}
+ \label{Fig:kaiten}
+\end{figure}
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.15]
+      {images/jikoitihatann.png}
+ \caption{Example of localization failure}
+ \label{Fig:hatan}
+\end{figure}
 
 調整完了の基準としては, コントローラ操作時のrosbagを再生した際に自己位置の破綻がなく, かつ実ロボットによる自律走行においてもゴールまで破綻なく移動できることである. 
 
@@ -91,7 +112,7 @@
 このように, 状況に応じてバランスを取ることが, AMCLのパラメータ調整の難しさであるといえる. 
 
 \figref{fig:ScanandMap}にAMCL調整前後のレーザスキャンと地図をRvizで可視化した様子を示す.
-\begin{figure}[h]
+\begin{figure}[H]
      \centering
      \begin{minipage}[c]{65mm}
          \centering
@@ -107,6 +128,9 @@
      \label{fig:ScanandMap}
 \end{figure}
 
+\subsection{コストマップのパラメータ調整}
+
+%\newpage
 \subsection{大規模屋外環境での地図解像度設定}
 つくばチャレンジ\cite{つくばチャレンジ}のような大規模な屋外環境における自律移動では, 
 使用する地図の総セル数が非常に大きくなる. このとき, 経路計画で用いられる Dijkstra 法の計算量は, 
