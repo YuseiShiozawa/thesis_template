@@ -129,6 +129,33 @@
 \end{figure}
 
 \subsection{コストマップのパラメータ調整}
+costmapは, ロボットの周囲環境を表現する重要なマップである. デフォルト設定のままでも動作は可能であるが, 
+障害物回避性能や応答性を向上させたい場合には, 各種パラメータを調整することが有効である. 
+
+costmapにはlocal\_costmapとglobal\_costmapの2種類が存在し, 両者で共通するパラメータが多い. 
+しかし, 名前空間ごとに独立してパラメータを定義することで, それぞれの役割に適した設定値を与えることが可能である. 
+また, 名前空間で個別に値を指定しなかった場合には, そのパラメータ値がlocal\_costmapとglobal\_costmapの両方に適用される. 
+
+まず, local\_costmapの主なパラメータについて述べる. update\_frequency は地図の更新頻度を表し, 
+値を大きくしすぎると動的障害物の変化を適切に反映できなくなる可能性がある. 
+一方で, 小さくしすぎるとCPU負荷が増大し, 処理が滞る可能性がある. 
+また, この値が適切でない場合には, 実行時にROSWARNが出るため注意が必要である. 
+
+local\_costmapの幅と高さを設定するwidthとheightは, \figref{Fig:lmap}に示すように, ロボット周辺に生成される局所領域の大きさを規定する. 
+値を大きくするほど広範囲の障害物情報を取り込めるが, その分だけ計算量は増加する. 
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.15]
+      {images/localcostmap.png}
+ \caption{Local\_costmap}
+ \label{Fig:lmap}
+\end{figure}
+
+inflation\_radiusは障害物をどの程度膨張させるかを決定するパラメータである. 
+障害物セルから周囲に, コストを膨張させる値であり, 安全な経路を生成する際に重要となる. 
+inflation\_radiusに加えて, cost\_scaling\_factorを用いることで, 膨張したコストの減衰具合を調整することができる. 
+cost\_scaling\_factorの値を大きくしすぎると, inflation\_radiusを変更しても, 
+実際にコストが膨張する範囲が極端に狭くなるため, 注意が必要である. 
 
 %\newpage
 \subsection{大規模屋外環境での地図解像度設定}
