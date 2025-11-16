@@ -156,6 +156,77 @@ inflation\_radiusは障害物をどの程度膨張させるかを決定するパ
 inflation\_radiusに加えて, cost\_scaling\_factorを用いることで, 膨張したコストの減衰具合を調整することができる. 
 cost\_scaling\_factorの値を大きくしすぎると, inflation\_radiusを変更しても, 
 実際にコストが膨張する範囲が極端に狭くなるため, 注意が必要である. 
+\figref{Fig:cost1}, \figref{Fig:cost10}, \figref{Fig:cost20}にinflation\_radiusが同じ値のときに, 
+cost\_scaling\_factorの値を変更したときのコストの膨張具合を示す. 
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.13]
+      {images/costsca1.png}
+ \caption{Inflated obstacles at cost\_scaling\_factor=1}
+ \label{Fig:cost1}
+\end{figure}
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.13]
+      {images/costsca10.png}
+ \caption{Inflated obstacles at cost\_scaling\_factor=10}
+ \label{Fig:cost10}
+\end{figure}
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.13]
+      {images/costsca20.png}
+ \caption{Inflated obstacles at cost\_scaling\_factor=20}
+ \label{Fig:cost20}
+\end{figure}
+
+resolutionはcostmapを構成する1セルおける大きさを示す値であり, 小さくするほど高精細な地図となる一方, 
+計算量は増加する. 逆に, resolutionを大きくすると粗い地図となり計算量を削減できるが, 
+障害物の形状が不正確になる可能性がある. 
+\figref{Fig:re1}, \figref{Fig:re01}, \figref{Fig:re05}に異なるresolutionにおけるコストマップを示す. 
+
+次に, global\_costmapについて述べる. 
+update\_frequency, inflation\_radius, cost\_scaling\_factor, resolutionといったパラメータはlocal\_costmapと同様の意味を持つ. 
+しかし, inflation\_radiusに関しては, local\_costmapと異なり, 
+static\_layerによって読み込まれた静的マップ全体に対して膨張処理が適用される点に特徴がある. 
+\figref{Fig:gmap}にglobal\_costmapの一例を示す. 
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.13]
+      {images/re_001.png}
+ \caption{Costmap at resolution=0.01}
+ \label{Fig:re1}
+\end{figure}
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.13]
+      {images/re_01.png}
+ \caption{Costmap at resolution=0.1}
+ \label{Fig:re01}
+\end{figure}
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.13]
+      {images/re_05.png}
+ \caption{Costmap at resolution=0.5}
+ \label{Fig:re05}
+\end{figure}
+
+次に, global\_costmapについて述べる. 
+上記で述べたパラメータはlocal\_costmapと同様の意味を持つ. 
+しかし, inflation\_radiusに関しては, local\_costmapと異なり, 
+static\_layerによって読み込まれた静的マップ全体に対して膨張処理が適用される点に特徴がある. 
+\figref{Fig:gmap}にglobal\_costmapの一例を示す. 
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.13]
+      {images/globalcostmap.png}
+ \caption{Global\_costmap}
+ \label{Fig:gmap}
+\end{figure}
+
+以上のように, costmapのパラメータはロボットの経路計画と障害物回避性能に直接影響するため, 
+環境に応じた調整が必要となる. 
 
 %\newpage
 \subsection{大規模屋外環境での地図解像度設定}
