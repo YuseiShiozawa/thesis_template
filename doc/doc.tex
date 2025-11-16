@@ -236,9 +236,9 @@ ROSのmap\_serverが扱う地図は格子状のセルで構成されており, 1
 広がり, 結果として地図全体のセル数が減少する. 例えば, resolutionを0.10から0.20に変更した
 場合, 格子は荒くなるが, 総セル数は大きく減少し, 経路計画の計算速度は向上する. 
 \tabref{tab:resolution_comparison}に異なる解像度における特性の比較を示す. 
-\begin{table}[htbp]
+\begin{table}[H]
   \centering
-  \caption{Comparison of characteristics for diﬀerent map resolutions}
+  \caption{Comparison of characteristics for different map resolutions}
   \label{tab:resolution_comparison}
   \begin{tabular}{lcc}
     \hline
@@ -252,16 +252,16 @@ ROSのmap\_serverが扱う地図は格子状のセルで構成されており, 1
 \end{table}
 
 つくばチャレンジ2025においては, 地図のスケールを調整した. 
-その結果を, \tabref{tab:tsukuba2025_map_scale}に示す. 総計算領域を約65\%削減することができた. 
+その結果を, \tabref{tab:tsukuba2025_map_scale}に示す. 調整により, 総計算領域を約65\%削減することができた. 
 この削減により, Dijkstra 法による経路探索の計算量が大幅に低減し, ロボットが停止を繰り返す問題を解消することができた. 
 \figref{Fig:beforemap}, \figref{Fig:aftermap}にスケールを統一した調整前, 調整後の地図を示す. 
 
-ただし, 解像度を過度に大きくすると, 地図が粗くなり, 自己位置推定が不安定になったり, 
+ただし, 解像度を過度に大きくすると, 地図が粗くなることで自己位置推定が不安定になる場合や, 
 狭い通路がセルの粗さによって潰され, 通行不可能と判断される場合がある. そのため, 
 解像度は単に大きくすればよいというものではないことを注意する必要がある. 
 \begin{table}[htbp]
   \centering
-  \caption{Comparison of Map Scale Adjustment in Tsukuba Challenge 2025}
+  \caption{Comparison of map scale adjustment in Tsukuba Challenge 2025}
   \label{tab:tsukuba2025_map_scale}
   \begin{tabular}{lccc}
     \hline
