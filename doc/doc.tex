@@ -156,7 +156,7 @@ inflation\_radiusは障害物をどの程度膨張させるかを決定するパ
 inflation\_radiusに加えて, cost\_scaling\_factorを用いることで, 膨張したコストの減衰具合を調整することができる. 
 cost\_scaling\_factorの値を大きくしすぎると, inflation\_radiusを変更しても, 
 実際にコストが膨張する範囲が極端に狭くなるため, 注意が必要である. 
-\figref{Fig:cost1}, \figref{Fig:cost10}, \figref{Fig:cost20}にinflation\_radiusが同じ値のときに, 
+\figref{Fig:cost1}, \figref{Fig:cost10}, \figref{Fig:cost20}にinflation\_radiusの値を固定し, 
 cost\_scaling\_factorの値を変更したときのコストの膨張具合を示す. 
 \begin{figure}[H]
   \centering
@@ -184,12 +184,6 @@ resolutionはcostmapを構成する1セルおける大きさを示す値であ�
 計算量は増加する. 逆に, resolutionを大きくすると粗い地図となり計算量を削減できるが, 
 障害物の形状が不正確になる可能性がある. 
 \figref{Fig:re1}, \figref{Fig:re01}, \figref{Fig:re05}に異なるresolutionにおけるコストマップを示す. 
-
-次に, global\_costmapについて述べる. 
-update\_frequency, inflation\_radius, cost\_scaling\_factor, resolutionといったパラメータはlocal\_costmapと同様の意味を持つ. 
-しかし, inflation\_radiusに関しては, local\_costmapと異なり, 
-static\_layerによって読み込まれた静的マップ全体に対して膨張処理が適用される点に特徴がある. 
-\figref{Fig:gmap}にglobal\_costmapの一例を示す. 
 \begin{figure}[H]
   \centering
  \includegraphics[keepaspectratio, scale=0.13]
