@@ -1,6 +1,6 @@
 \section{ドキュメントの構成}
-作成したドキュメント(\url{https://github.com/open-rdc/nav_tuning_guide})の構成は以下の要素から構成されている. 
-また, 作成にあたってROS WikiのNavigationページを参考にした.
+作成したドキュメント(\url{https://github.com/open-rdc/nav_tuning_guide})は以下の要素から構成されている. 
+作成にあたってはROS WikiのNavigationページを参考にした.
 \cite{ros_wiki_navigation}
 \begin{itemize}
      \item \textbf{自己位置推定(AMCL)}
@@ -37,6 +37,15 @@
 \section{ドキュメントの例}
 本論文では, 作成したドキュメントの中から例として, オドメトリ調整と自己位置推定(AMCL), コストマップ, 地図の
 4項目を取り上げ, 記載内容の一部を示す. 
+
+\figref{Fig:doc}にドキュメントのスクリーンショットを示す. 
+\begin{figure}[H]
+  \centering
+ \includegraphics[keepaspectratio, scale=0.17]
+      {images/screenshot.png}
+ \caption{Screenshot of documents}
+ \label{Fig:doc}
+\end{figure}
 
 \subsection{オドメトリ調整}
 調整対象のパラメータは, 車輪半径に関する補正係数であるwheel\_radius\_multiplierと, 車輪環距離に関する補正係数であるwheel\_separation\_multiplierの2つである. 

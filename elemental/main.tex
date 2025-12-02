@@ -1,5 +1,5 @@
 \section{ROS}
-ROS(Robot Operating System)は, ロボット開発を効率化するためのオープンソースソフトウェアフレームワークである. 
+ROS (Robot Operating System)は, ロボット開発を効率化するためのオープンソースソフトウェアフレームワークである. 
 複数のプログラミング言語向けのライブラリや, センサや状態を可視化するツール群, ノード間のメッセージ通信機構, およびパッケージによるモジュール管理機能を備えている点が特徴である. 
 \figref{Fig:ros_example}に示すように, ROSにおける基本的な実行単位はノードであり, ノードはトピックやサービスといった仕組みを通じて情報を交換する. 
 これにより, センサデータの取得や制御アルゴリズム, 経路計画などを個別のモジュールとして構成し, 分散して動作させることが可能となる. 
@@ -25,7 +25,7 @@ ROS(Robot Operating System)は, ロボット開発を効率化するためのオ
 ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を自律的に移動するためのソフトウェアフレームワークである. 主に以下の要素から構成されている. 
 \begin{itemize}
      \item \textbf{自己位置推定}\\
-     ロボットの現在位置を推定する代表的な手法として, AMCL(Adaptive Monte Carlo Localization)が用いられる. 
+     ロボットの現在位置を推定する代表的な手法として, AMCL (Adaptive Monte Carlo Localization)が用いられる. 
      AMCLはROS Navigation Stackで自己位置推定を行う確率的アルゴリズムであり, LiDARやオドメトリ情報をもとに多数の仮説(パーティクル)を生成し, 
      それぞれの重みを更新することでロボットの位置を推定する. また, 状況に応じてパーティクル数を動的に調整することで精度と計算負荷のバランスを取る特徴をもつ. 
      一方で, その性能はオドメトリ誤差やレーザノイズなど多くのパラメータ設定に依存しており, 実環境に応じたチューニングが重要となる. 
@@ -39,7 +39,7 @@ ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を�
      \end{figure}
 
      \item \textbf{地図生成}\\
-     未知領域においては, 環境のマッピングのため, SLAM(Simultaneous Localization and Mapping)が必要となる. 
+     未知領域においては, 環境のマッピングのため, SLAM (Simultaneous Localization and Mapping)が必要となる. 
      SLAMは, ロボットが未知の環境内で自己位置を推定しながら同時に地図を生成するための手法であり, 
      自律移動の基盤技術の一つである. ロボットはLiDARやカメラなどのセンサ情報を取得し, 環境内の特徴点や障害物を検出することで地図を構築すると同時に, 
      自身の位置をその地図上で推定する. この相互依存的な推定を繰り返すことで, 外部基準を持たない環境でも自己位置と地図を同時に確立できる. 
@@ -49,17 +49,17 @@ ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を�
   \begin{subfigure}[b]{0.44\textwidth}
     \centering
     \includegraphics[keepaspectratio, width=\linewidth]{images/slam_toolbox.png}
-    \caption{Map created with SLAM}
+    \caption{Map generated with SLAM}
     \label{Fig:Map}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
     \centering
     \includegraphics[keepaspectratio, width=\linewidth]{images/real_tsudanuma.png}
-    \caption{Aerial photograph(souce: \cite{googleearth})}
+    \caption{Aerial photograph (souce: \cite{googleearth})}
     \label{fig:tsudanuma}
   \end{subfigure}
-  \caption{Created map and aerial photograph}
+  \caption{Generated map and aerial photograph}
   \label{fig:map_comparison}
 \end{figure}
 
@@ -74,14 +74,14 @@ ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を�
      \figref{Fig:foot}にfootprintの一例を示す. 
      一方, 局所的経路計画は, ロボットが実際に移動する際の動作をリアルタイムに制御する段階であり, 
      センサ情報をもとに動的な障害物を回避しながら経路を追従する. 
-     代表的な手法であるDWA(Dynamic Window Approach)は, ロボットの運動学的制約を考慮しつつ, 
+     代表的な手法であるDWA (Dynamic Window Approach)は, ロボットの運動学的制約を考慮しつつ, 
      速度空間内で安全かつ効率的な制御コマンドを探索するアルゴリズムである. 
      DWAは目標方向の進行性, 障害物との距離, 安全性など複数の評価関数を組み合わせて最適な行動を選択することで, 
      滑らかな走行と衝突回避を両立させている. 
      この最適な行動を選択するシミュレーション時間を決定するのがsim\_timeパラメータであり, 
      値を大きくすると遠い将来までの経路を考慮するが, 計算負荷が増加する. 
      \figref{fig:simcompare}に異なるsim\_timeにおける経路を示す. 
-     また, 経路計画の更新頻度を制御するパラメータとして, planner\_frequency(グローバルプランナーの再計算周期)およびcontroller\_frequency(ローカルプランナーの制御出力周期)がある. 
+     また, 経路計画の更新頻度を制御するパラメータとして, planner\_frequency (グローバルプランナーの再計算周期)およびcontroller\_frequency (ローカルプランナーの制御出力周期)がある. 
      これらの値はPCの処理能力や環境に応じて適切に調整する必要がある. 
      \begin{figure}[hbtp]
      \centering
@@ -92,14 +92,14 @@ ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を�
      \end{figure}
 \begin{figure}[H]
   \centering
-  \begin{subfigure}[b]{0.44\textwidth}
+  \begin{subfigure}[b]{0.51\textwidth}
     \centering
-    \includegraphics[keepaspectratio, width=\linewidth]{images/simtime17.png}
+    \includegraphics[keepaspectratio, width=\linewidth]{images/17_4.png}
     \caption{Local path at sim\_time=1.7s}
     \label{Fig:sim17}
   \end{subfigure}
   \hfill
-  \begin{subfigure}[b]{0.49\textwidth}
+  \begin{subfigure}[b]{0.47\textwidth}
     \centering
     \includegraphics[keepaspectratio, width=\linewidth]{images/simtime34.png}
     \caption{Local path at sim\_time=3.4s}
@@ -125,7 +125,7 @@ ROS Navigation stack\cite{navstack}は, 自律移動ロボットが環境内を�
      \centering
           \includegraphics[keepaspectratio, scale=0.13]
            {images/costmap2.png}
-          \caption{Costmap in Rviz}
+          \caption{Cost map visualized in Rviz}
           \label{Fig:costmap}
      \end{figure}     
 \end{itemize}

@@ -1,7 +1,7 @@
 %!TEX root = ../thesis.tex
 
 \section{背景}
-近年, ROS(Robot Operating System)をベースとした自律移動ロボットのナビゲーション技術が, 警備ロボットや案内ロボットなど, 様々な分野で活用されつつある.\cite{haikei_1}\cite{siryo_4}
+近年, ROS (Robot Operating System)をベースとした自律移動ロボットのナビゲーション技術が, 警備ロボットや案内ロボットなど, 様々な分野で活用されつつある.\cite{haikei_1}\cite{siryo_4}
 ただし, ナビゲーションにおいては, ROS Navigation stack\cite{navstack}のパラメータ, オドメトリ調整のパラメータ, 地図生成のパラメータなど, 複数のパラメータを
 適切に調整しなければ経路に沿った自律移動を行うことができない. 
 
@@ -23,7 +23,7 @@ ROSのナビゲーションのパラメータ調整について解説されて�
   \centering
  \includegraphics[keepaspectratio, scale=0.3]
       {images/senkou_1.png}
- \caption{Laser-related parameters(souce: \cite{zheng2017rosnavigation})}
+ \caption{Laser-related parameters (souce: \cite{zheng2017rosnavigation})}
  \label{Fig:laser-related parameters}
 \end{figure}
 
@@ -31,7 +31,7 @@ ROSのナビゲーションのパラメータ調整について解説されて�
   \centering
  \includegraphics[keepaspectratio, scale=0.3]
       {images/senkou_2.png}
- \caption{Odometry and particle filter parameters(souce: \cite{zheng2017rosnavigation})}
+ \caption{Odometry and particle filter parameters (souce: \cite{zheng2017rosnavigation})}
  \label{Fig:odometry and particle filter parameters}
 \end{figure}
 
@@ -46,7 +46,7 @@ ROSのナビゲーションのパラメータ調整について解説されて�
   \centering
  \includegraphics[keepaspectratio, scale=0.24]
       {images/param_example_1.png}
- \caption{Parameters for TrajectoryPlannerROS(souce: \cite{siryo_3})}
+ \caption{Parameters for TrajectoryPlannerROS (souce: \cite{siryo_3})}
  \label{Fig:param_example_1}
 \end{figure}
 
@@ -54,7 +54,7 @@ ROSのナビゲーションのパラメータ調整について解説されて�
   \centering
  \includegraphics[keepaspectratio, scale=0.24]
       {images/param_example_2.png}
- \caption{Parameters for global costmap(souce: \cite{siryo_3})}
+ \caption{Parameters for global costmap (souce: \cite{siryo_3})}
  \label{Fig:param_example_2}
 \end{figure}
 
@@ -62,13 +62,13 @@ ROSのナビゲーションのパラメータ調整について解説されて�
   \centering
  \includegraphics[keepaspectratio, scale=0.24]
       {images/param_example_3.png}
- \caption{Parameter for local costmap(souce: \cite{siryo_3})}
+ \caption{Parameter for local costmap (souce: \cite{siryo_3})}
  \label{Fig:param_example_3}
 \end{figure}
 
 \newpage
 \section{目的}
-本論文では, ロボットにおけるROS Navigation stackを用いたナビゲーションの調整手順を体系化し, 調整方法の一例を示すことを目的とする. 
+本論文では, ROS Navigation stackを用いたナビゲーションの調整手順を体系化し, 調整方法の一例を示すことを目的とする. 
 
 \section{論文の構成}
 本論文では以下のように構成される. 
