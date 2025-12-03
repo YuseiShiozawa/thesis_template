@@ -22,6 +22,13 @@
 実験には, 本研究室で開発されているロボットORNE-box2\cite{井口颯人2023屋外自律移動ロボットプラットフォーム-orne}を使用した. 
 その外観を\figref{Fig:ORNE-box2}に示す. 
 また, ナビゲーションにはROS Navigation stackを用いた. ORNE-box2を含めたそのシステム構成を\figref{Fig:system}に示す. 
+ORNE-box2はPCとしてJetson AGX Xavier (32GB RAM)を搭載しており, 
+3D-LiDAR (R-Fans-16), 2D-LiDAR (UTM-30LX-EW), IMU (ADIS16470), およびエンコーダを備えている. 
+2D-LiDARは障害物検出に使用し, 3D-LiDARは自己位置推定に用いた. 
+IMUとエンコーダに基づくオドメトリはジャイロオドメトリとして統合し, AMCLに対して移動情報を提供している. 
+ナビゲーションシステムは, Map Serverが提供する静的地図を基にAMCLが自己位置を推定し, Move Baseが経路計画を行い, 速度指令値を送信する構成である. 
+また, Waypoint Serverは, あらかじめ設定した複数の目的地を管理し, 各地点に到達するごとにMove Baseに対して次の目的地を送信することで, 
+指定されたコースでの自律移動を実現している. 
 \begin{figure}[hbtp]
   \centering
  \includegraphics[keepaspectratio, scale=0.5]
@@ -43,10 +50,10 @@
  \caption{ORNE-box2}
  \label{Fig:ORNE-box2}
 \end{figure}
-\begin{figure}[hbtp]
+\begin{figure}[H]
   \centering
  \includegraphics[keepaspectratio, scale=0.11]
-      {images/systembox22.png}
+      {images/systembox.png}
  \caption{System configuration}
  \label{Fig:system}
 \end{figure}
@@ -87,14 +94,14 @@
 \subsection{実験2}
 \begin{table}[htbp]
   \centering
-  \caption{Results of B3 students in the Tsudanuma Challenge 2024}
+  \caption{Navigation results of B3 students in the Tsudanuma Challenge 2024}
   \label{tab:b3_results}
   \begin{tabular}{lccc}
     \hline
      & \textbf{No.1} & \textbf{No.2} & \textbf{No.3} \\
     \hline
-    Completion & Yes & Yes & Yes \\
-    Total time to completion [h] & 5.0 & 3.5 & 4.5 \\
+    Success & Yes & Yes & Yes \\
+    Total time to trial [h] & 5.0 & 3.5 & 4.5 \\
     \hline
   \end{tabular}
 \end{table}
@@ -102,6 +109,6 @@
 走行コースの全長は約1661m, 走行時間はおよそ35分であり, すべての走行で同区間を完走した. 
 いずれの実験においても, ロボットは経路から大きく逸脱することなく目標地点まで走行でき, 安定したナビゲーション動作が確認された. 
 また, パラメータ調整に要した時間は3.5〜5.0時間であり, いずれの参加者も作業を完遂することができた. 
-これにより, ドキュメントの有用性を数例ではあるが確認された. 
+これにより, ドキュメントの有用性が数例ではあるが確認された. 
 
 
